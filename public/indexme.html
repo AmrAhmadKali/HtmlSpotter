@@ -1,0 +1,72 @@
+<html>
+<head>
+   <link href="./css/chat.css" rel="stylesheet" id="bootstrap-css">
+   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<!------ Include the above in your HEAD tag ---------->
+
+<body>
+<div class="chat_window">  
+   <div class="top_menu">
+      <div class="buttons">
+         <div class="button close">
+
+         </div>
+         <div class="button minimize">
+
+         </div>
+         <div class="button maximize">
+
+         </div>
+      </div>
+      <div class="title">
+         Chat
+      </div>
+   </div>
+   <ul class="messages">
+      <li>Willkommen in meinem Bot</li>
+   </ul>
+   <div class="bottom_wrapper clearfix">
+      <div class="message_input_wrapper">
+         <input type="text", name = "input" , class="message_input" placeholder="Was ist die Beschwerde?..." />
+      </div>   
+      <div class="send_message" >
+         <div class="icon">
+          <!--  <input type="text" id="input" />
+            <input type="submit" value="sende" id="sende" />
+          -->
+         </div>
+         
+         <div class="text">Send</div>
+      </div>
+   </div>
+</div>
+<div class="message_template">
+   <li class="message">
+      <div class="avatar">
+
+      </div>
+      <div class="text_wrapper">
+         <div class="text">
+            Are you alright?
+         </div>
+      </div>
+   </li>
+</div>
+<script>
+   $(".send_message").on("click", (event)=>{
+      let message = $(".message_input").val()
+      console.log(message)
+      alert(message)
+   }
+   // function msg_parse(){ alert(($(".message_input")).text(name))         ///WWWWWWWWWWW
+   //var msg1=""
+   
+   //$('#message').append($('#input').val())
+   // }
+)
+
+</script>
+</body>
+</html>
