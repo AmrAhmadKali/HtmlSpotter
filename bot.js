@@ -15,18 +15,18 @@ class bot {
   	constructor () {
 		const BOT_NAME = 'Seelenarzt'
 		this.dict = []
-        this.dict['Druck'] = 'Druck umgibt jedem bei den Herausforderungen, aber jeder reagiert anders \n auf Stress'
+        this.dict['Druck'] = 'Druck umgibt jedem bei den Herausforderungen, aber jeder reagiert anders  auf Stress'
         this.dict['Pause'] = 'Pausen sind wichtig, der Koerber und das Gehirn brauchen Ruhe'
-        this.dict['abnehm'] = 'Der Wille den Koerber zu optimieren ist gut, muss man aber nicht daran \n übertrieben'
-        this.dict['schlaf'] = 'Schlafen ist in normanlen Massen gesund, macht aber keinen Sinn wenn man \n tagsueber schlaeft'
+        this.dict['abnehm'] = 'Der Wille den Koerber zu optimieren ist gut, muss man aber nicht daran uebertrieben'
+        this.dict['schlaf'] = 'Schlafen ist in normanlen Massen gesund, macht aber keinen Sinn wenn man  tagsueber schlaeft'
     	this.dict['Sorge'] = 'Lassen Sie die Sorgen nicht zu viel Aufmerksam von Ihnen nehmen'
 		this.dict['richtig'] = 'Es gibt nicht die eine richtige Loesung, es ist immer je nach Person anders'
-		this.dict['konzentr'] = 'Auch bei Konzentrationsstärung muss man nicht so schnell von psychatrischen \n Diagnosen ausgehen'
+		this.dict['konzentr'] = 'Auch bei Konzentrationsstoerung muss man nicht so schnell von psychatrischen  Diagnosen ausgehen'
 		this.dict['einsam'] = 'Alleinsein ist nicht immer die beste Idee '
 		this.dict['traurig'] = 'Dauernde Traurigkeit ist manchmal ein Signal'
-		this.dict['Medikation'] = 'Auch Ärzte müssen vorsichig sein beim Medikationenverschreibungen'
-		this.dict['Droge'] = 'Drogen muss man unbedingt vermeiden, besonders bei unstabile Menschen, bei denen \n auch kann man leicht süchtig werden'
-		this.dict['Angst'] = 'Angst ist Menschlich, wenn aber der kommt häufig ohne richtigen Grund, da muss man \n beraten lassen'
+		this.dict['Medikation'] = 'Auch Aerzte müssen vorsichig sein beim Medikationenverschreibungen'
+		this.dict['Droge'] = 'Drogen muss man unbedingt vermeiden, besonders bei unstabile Menschen, bei denen auch kann man leicht suechtig werden'
+		this.dict['Angst'] = 'Angst ist Menschlich, wenn aber der kommt haeufig ohne richtigen Grund, da muss man beraten lassen'
 
 
     /** Die Websocketverbindung
@@ -94,7 +94,7 @@ class bot {
     this.botMessagesHistory = []
 
     this.botMessagesHistoryResetable = []
-    this.unkownMessage = "Ich verstehe nicht"
+    this.unkownMessage = "Ich verstehe Sie nicht"
 
   }
 
@@ -114,7 +114,7 @@ class bot {
    	* @param nachricht auf die der bot reagieren soll
   	*/
   	post (nachricht) {
-
+      var BOT_NAME = 'Seelenarzt'
       this.userMessagesHistory.push(nachricht)      //save user messages History
       var inhalt = null
     var dictCounter = Object.keys(this.dict).length
@@ -126,31 +126,26 @@ class bot {
           inhalt = this.dict[j]
           break
         }
-        else {                                    //Nachricht nicht erkannt
-          var tmpResponse = `Ich kann sie nicht verstehen, ich kann aber Ihnen helfen bei ${j}`    //Einlenken
+      }
+        
+    if(inhalt == null){                          //Nachricht nicht erkannt                                   
+        var tmpResponse = `Ich kann Sie nicht verstehen, ich kann aber Ihnen helfen bei ${Math.floor(Math.random() * dictCounter)}`    //zahl zwischen 0 - dictcounter //Einlenken
 
-          if (!(this.botMessagesHistory.includes(this.unkownMessage))){
-            inhalt = this.unkownMessage                                               //Normale ich verstehe nicht msg
+        if (!(this.botMessagesHistory.includes(this.unkownMessage))){
+          inhalt = this.unkownMessage                                               //Normale ich verstehe nicht msg
+          this.botMessagesHistory.push(inhalt)
+        }
+        else {                                                                      //ich verstehe nicht msg schon verwendet wurde
+          if (!(this.botMessagesHistory.includes(tmpResponse))){                    //Gegen Vorschlag generieren
+            inhalt = tmpResponse 
             this.botMessagesHistory.push(inhalt)
-            break
           }
-          else {                                                                      //ich verstehe nicht msg schon verwendet wurde
-            if (!(this.botMessagesHistory.includes(tmpResponse))){
-              inhalt = tmpResponse 
-              this.botMessagesHistory.push(inhalt)
-              break
-            }
-            else if(counter == dictCounter -1){
-              var newKey = dictCounter -1 - counter
-              var t = this.dict[newKey]
-              tmpResponse = `do you mean ${t}`
-              inhalt = tmpResponse 
-              this.botMessagesHistory.push(inhalt)
-              break
-            }
-          }
+          else {             //beide "Normale ich verstehe nicht" msg u. ein randomiesierte Gegevorschlag verwendet wurden 
+            inhalt = `Beginnen wir von vorne, ich bin hier der ${BOT_NAME} ich kann Ihnen und Später ihrem wircklicher Arzt helfen bei Psycho-Syptome identifizierung`
+          }                   //Fallback
         }
       }
+    
   
   
       // var name = 'Seelenarzt'
@@ -191,7 +186,7 @@ class bot {
      	* Verarbeitung 
     	*/
       //sleep()
-    	var msg = '{"type": "msg", "name": "' + this.BOT_NAME + '", "msg":"' + inhalt + '"}'
+    	var msg = '{"type": "msg", "name": "' + BOT_NAME + '", "msg":"' + inhalt + '"}'
     	console.log('Send: ' + msg)
     	this.client.con.sendUTF(msg)
   	}
