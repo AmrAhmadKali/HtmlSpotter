@@ -132,7 +132,7 @@ class bot {
       }
     
     if(this.botMessagesHistory.length == NO_OF_Entries){
-      inhalt = "Das habe ich bis jetzt mitbekommen als moegliche Diagnosen (Bitte bemerken Sie: dass nur eine Hilfe fuer Ihre Arzt und keine tatsaechliche Diagnose ist):"
+      inhalt = "Das habe ich bis jetzt mitbekommen als moegliche Diagnosen (Bitte bemerken Sie: dass es nur eine Hilfe fuer Ihre Arzt und keine tatsaechliche Diagnose ist):"
       var allUserMsgs = ''
       for (var k = 0; k < this.botMessagesHistory.length; k++){
         allUserMsgs = allUserMsgs + " " + this.userMessagesHistory[k]+ " " 
