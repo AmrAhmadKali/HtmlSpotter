@@ -1,6 +1,7 @@
 'use strict'
 
 var WebSocketClient = require('websocket').client
+var intents = require('./test.json')
 
 /**
  * bot ist ein einfacher Websocket Chat Client
@@ -14,21 +15,6 @@ class bot {
    */
   	constructor () {
 		const BOT_NAME = 'Seelenarzt'
-		this.dict = []
-        this.dict['Druck'] = 'Druck umgibt jedem bei den Herausforderungen, aber jeder reagiert anders  auf Stress'
-        this.dict['Pause'] = 'Pausen sind wichtig, der Koerber und das Gehirn brauchen Ruhe'
-        this.dict['abnehm'] = 'Der Wille den Koerber zu optimieren ist gut, muss man aber nicht daran uebertrieben'
-        this.dict['schlaf'] = 'Schlafen ist in normanlen Massen gesund, macht aber keinen Sinn wenn man  tagsueber schlaeft'
-    	this.dict['Sorge'] = 'Lassen Sie die Sorgen nicht zu viel Aufmerksam von Ihnen nehmen'
-		this.dict['richtig'] = 'Es gibt nicht die eine richtige Loesung, es ist immer je nach Person anders'
-		this.dict['konzentr'] = 'Auch bei Konzentrationsstoerung muss man nicht so schnell von psychatrischen  Diagnosen ausgehen'
-		this.dict['einsam'] = 'Alleinsein ist nicht immer die beste Idee '
-		this.dict['traurig'] = 'Dauernde Traurigkeit ist manchmal ein Signal'
-		this.dict['Medikation'] = 'Auch Aerzte müssen vorsichig sein beim Medikationenverschreibungen'
-		this.dict['Droge'] = 'Drogen muss man unbedingt vermeiden, besonders bei unstabile Menschen, bei denen auch kann man leicht suechtig werden'
-		this.dict['Angst'] = 'Angst ist Menschlich, wenn aber der kommt haeufig ohne richtigen Grund, da muss man beraten lassen'
-
-
     /** Die Websocketverbindung
       */
     this.client = new WebSocketClient()
@@ -93,8 +79,7 @@ class bot {
     this.userMessagesHistory = []
     this.botMessagesHistory = []
 
-    this.botMessagesHistoryResetable = []
-    this.unkownMessage = "Ich verstehe Sie nicht"
+    this.unkownMessage = "Ich verstehe Sie nicht,Koennten Sie erzaehlen, was deine Beschwerde ist?"
 
   }
 
@@ -115,21 +100,21 @@ class bot {
   	*/
   	post (nachricht) {
       var BOT_NAME = 'Seelenarzt'
+      var NO_OF_Entries = 10                        //Nach wie viele bot-antworten endet der chat
+      nachricht = nachricht.toLowerCase()
       this.userMessagesHistory.push(nachricht)      //save user messages History
       var inhalt = null
-    var dictCounter = Object.keys(this.dict).length
-    var counter = 0
 
-      for ( var j in this.dict) {
-        counter++
-        if (nachricht.includes(j)) {              //Nachricht erkannt
-          inhalt = this.dict[j]
+      for (var j = 0 ;j<intents.answers.length ;j++) {
+        if (nachricht.includes(intents.answers[j].intent)) {              //Nachricht erkannt
+          inhalt = intents.answers[j].answer
+          this.botMessagesHistory.push(inhalt)
           break
         }
       }
         
     if(inhalt == null){                          //Nachricht nicht erkannt                                   
-        var tmpResponse = `Ich kann Sie nicht verstehen, ich kann aber Ihnen helfen bei ${Math.floor(Math.random() * dictCounter)}`    //zahl zwischen 0 - dictcounter //Einlenken
+        var tmpResponse = `Ich kann Sie nicht verstehen, ich kann aber Ihnen helfen bei ${intents.answers[Math.floor(Math.random() * intents.answers.length)].diagnosis}`    //zahl zwischen 0 - dictcounter //Einlenken
 
         if (!(this.botMessagesHistory.includes(this.unkownMessage))){
           inhalt = this.unkownMessage                                               //Normale ich verstehe nicht msg
@@ -141,50 +126,25 @@ class bot {
             this.botMessagesHistory.push(inhalt)
           }
           else {             //beide "Normale ich verstehe nicht" msg u. ein randomiesierte Gegevorschlag verwendet wurden 
-            inhalt = `Beginnen wir von vorne, ich bin hier der ${BOT_NAME} ich kann Ihnen und Später ihrem wircklicher Arzt helfen bei Psycho-Syptome identifizierung`
+            inhalt = `Beginnen wir von vorne, ich bin hier der ${BOT_NAME} ich kann Ihnen und Später ihrem wirklicher Arzt helfen bei Psycho-Syptome identifizierung`
           }                   //Fallback
         }
       }
     
-  
-  
-      // var name = 'Seelenarzt'
-    	// const nicht_verstehen = []
-		  // nicht_verstehen ['Ich habe Ihnen nicht genau verstanden wir sollten hier über Ihre Psyche reden'] = 0
-      // {
-      // "Ich habe Ihnen nicht genau verstanden wir sollten hier über Ihre Psyche reden" : 0,
-      // }
-      // var antwort = ''
-      // var verlauf = []
-      // verlauf ['Ich habe Ihnen nicht genau verstanden wir sollten hier über Ihre Psyche reden'] = 0
+    if(this.botMessagesHistory.length == NO_OF_Entries){
+      inhalt = "Das habe ich bis jetzt mitbekommen als moegliche Diagnosen (Bitte bemerken Sie: dass nur eine Hilfe fuer Ihre Arzt und keine tatsaechliche Diagnose ist):"
+      var allUserMsgs = ''
+      for (var k = 0; k < this.botMessagesHistory.length; k++){
+        allUserMsgs = allUserMsgs + " " + this.userMessagesHistory[k]+ " " 
+      }
+      allUserMsgs = allUserMsgs.toLowerCase()
+      for (var i =0; i < intents.answers.length; i++){       
+          if(allUserMsgs.includes(intents.answers[i].intent)){
+            inhalt = inhalt + " " + intents.answers[i].diagnosis + ","
+          }
+        }
+    }
 
-      //var antworten[inhalt] = 0
-     // 
-
-    	// for ( var i in verlauf) {
-      //   //For Test
-      //   console.log(i)
-
-      // }
-		
-    	// for ( var j in this.dict) {                                                   //ToDo
-			// if (nachricht.includes(j)) {
-      //   	antwort = this.dict[j]
-      //     verlauf['"' + antwort + '"'] += 1 
-      //     break
-      //   }
-      // else {
-
-      //     // antwort = 
-
-      // }
-      
-    	// }	
-      
-
-    	/*
-     	* Verarbeitung 
-    	*/
       //sleep()
     	var msg = '{"type": "msg", "name": "' + BOT_NAME + '", "msg":"' + inhalt + '"}'
     	console.log('Send: ' + msg)

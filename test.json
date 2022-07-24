@@ -1,0 +1,22 @@
+{ "answers" : [ {"intent" : "druck", "answer" : "Druck umgibt jedem bei den Herausforderungen, aber jeder reagiert anders  auf Stress. Daher ist es wichtig den Umgang mit Druck zu verfeinern", "diagnosis" : "exzessive Stress"},
+{"intent" : "pause", "answer" : "Pausen sind wichtig, der Koerber und das Gehirn brauchen Ruhe. Staendiges Arbeit ohne Pause machen ist daher keine gute Idee", "diagnosis" : "Mangel der Pausen"},
+{"intent" : "abnehm", "answer" : "Der Wille den Koerber zu optimieren ist gut, muss man aber nicht daran uebertrieben, sonst verliert man seine/ ihre Koerber Akzeptanz", "diagnosis" : "essstoerung Potenzial"},
+{"intent" : "schlaf", "answer" : "Schlafen ist in normanlen Massen gesund, macht aber keinen Sinn wenn man tagsueber schlaeft", "diagnosis" : "Schalafstoerung Potenzial"},
+{"intent" : "sorge", "answer" : "Sorgen sind Huerden, wenn man sich immer zu viel Sorgen macht. Die Sorgen duerfen nicht zu viel Aufmerksam von Ihnen nehmen", "diagnosis" : "Sorgen / Angst"},
+{"intent" : "konzentr", "answer" : "Konzentrations Problemen koennen durch viele Grunde verursacht werden. Aber ich notiere das auch fuer die spaeteren Psychoanalyse", "diagnosis" : "Konzentrationsstoerung"},
+{"intent" : "einsam", "answer" : "Einsamkeit ist nicht immer die beste Idee. Man muss mit den Menschen interaktiv sein", "diagnosis" : "Einsamkeit"},
+{"intent" : "depress", "answer" : "Dauernde Traurigkeit ist manchmal ein Signal fuer Depression die Notwendigkeit eines Psychatrische Hilfe", "diagnosis" : "Depression Potenzial"},
+{"intent" : "zwung", "answer" : "Man muss nicht durch seine Aengste gezwungen fuehlen, denn das ist Signal fuer innere Unruhe", "diagnosis" : "Zwangstoerung Potenzial"},
+{"intent" : "stimmungsschwank", "answer" : "Grundlose Stimmungsschwankungen sind bei haufige Auftritt ein Zeichen, die man zur emotionale Instabilitaet zurueckfuehren kann", "diagnosis" : "Stimmungsschwankungen"},
+{"intent" : "trauma", "answer" : "Wenn man ein Trauma erlitten hat, soll man unbedingt dieses sinnvoll und fruezeitig therapeutisch verarbeiten", "diagnosis" : "Trauma Potenzial"},
+{"intent" : "burn", "answer" : "Burnout und das Burnout-Syndrom ist haefig besonders bei Stressigen Arbeitsweisen und bei wenige Pausen Machen", "diagnosis" : "Burnout syndrom Potenzial"},
+{"intent" : "perfekt", "answer" : "Perfektionierung fuehrt zur endlosen Bestrebung. Die kann theoritisch gut sein, ist aber in Wirklichkeit sozusagen Overkill", "diagnosis" : "Perfektionierung"},
+{"intent" : "paranoi", "answer" : "Man muss nicht immer sich als Opfer sehen, denn das kann das Leben zur Hoelle macht", "diagnosis" : "Paranoia Potenzial"},
+{"intent" : "schuld", "answer" : "Schuld muss man nicht lang halten, sonst kann man nicht mehr sein Leben normal durchfueren", "diagnosis" : "Schuld Gefuele"},
+{"intent" : "alkohol", "answer" : "Alkohol kann viel Schaden machen, Alkoholtrinken ist immer ein unguenstige Idee", "diagnosis" : "Alkohol Sucht"},
+{"intent" : "suizid", "answer" : "Suizid Gedanken sind ein echter Gefahr, sie muessen umgehend behandelt werden", "diagnosis" : "Suizid Gedanken"},
+{"intent" : "drog", "answer" : "Drogenkonsum kann das Leben zerstueren", "diagnosis" : "Drogen Sucht"},
+{"intent" : "mani", "answer" : "Manische Episoden sind ja ueblich bei viele Erkrankungen, wichtig ist sie zu erkennen und psychiatrisch zu behandeln", "diagnosis" : "Manische Episode Potenzial"},
+{"intent" : "phobie", "answer" : "Phobien trotz ihren unangenehmigkeit, sind im Tat sehr effizient behandelbar", "diagnosis" : "Phobie Potenzial"}
+    ]
+}
