@@ -193,3 +193,13 @@ body {
 .message_template {
   display: none;
 }
+
+
+.messages li {
+  border: 2px solid rgb(54, 98, 135);
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(19, 77, 173);
+  width: 43%;
+  margin-bottom: 5px;
+}

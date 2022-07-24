@@ -88,8 +88,10 @@ wss.on('request', function (request) {
     }
 
     // Leite die Daten des Users an den Bot weiter, damit der antworten kann
-    if (uname !== BOT_NAME && utype === 'msg') {                                            //Vulnerable
-      var test = myBot.post(umsg)
+    if (uname !== BOT_NAME && utype === 'msg') {    
+      setTimeout( function () {
+        myBot.post(umsg)
+      }, "3000")
     }
   })
 })

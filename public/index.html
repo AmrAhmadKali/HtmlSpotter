@@ -1,48 +1,55 @@
-<html><head><script src="/js/jquery.js"></script>
+<html>
+<head>
+   <link href="./css/chat.css" rel="stylesheet" id="bootstrap-css">
+   <script src="/js/jquery.js"></script>
+   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
-<body>
-    <div id="msgs" style="height:400px; width:400px; overflow: scroll; float:left;">
-    </div>
-    <div id="users" style="height:400px; width:100px; overflow: scroll;">
-    </div>
-    <form id="chatForm">
-        <label for="msg">u1:&nbsp;</label>
-        <input id="msg" type="text"/>
-        <button id="sendBtn">Send</button>
-        <script>
-            var socket = new WebSocket('ws://localhost:8181/', 'chat');
-            var name = 'u1'
-            socket.onopen = function () {
-                
-                name = "name" + Math.floor(Math.random() * Math.floor(700));
+<!------ Include the above in your HEAD tag ---------->
 
-                socket.send('{"type": "join", "name":" '+name+'"}');
-            }
-            $('#sendBtn').on('click', function (e) {
-                e.preventDefault();
-                //name = 'u1',
-                msg = $('#msg').val();
-                socket.send('{"type": "msg", "msg": "' + msg + '"}');
-                $('#msg').val('');
-            });
-            socket.onmessage = function (msg) {
-                var data = JSON.parse(msg.data);
-                switch (data.type) {
-                    case 'msg':
-                        var msg = $('<div>' + data.name + ': ' + data.msg +
-                                '</div>');
-                        $('#msgs').append(msg);
-                        break;
-                    case 'join':
-                        $('#users').empty();
-                        for (var i = 0; i < data.names.length; i++) {
-                            var user = $('<div>' + data.names[i] + '</div>');
-                            $('#users').append(user);
-                        }
-                        break;
-                }
-            };
-            </script>
-        </form>
-    </body>
+<body>
+<div class="chat_window">  
+   <div class="top_menu">
+      <div class="buttons">
+         <div class="button close">
+
+         </div>
+         <div class="button minimize">
+
+         </div>
+         <div class="button maximize">
+
+         </div>
+      </div>
+      <div class="title">
+         Chat
+      </div>
+   </div>
+   <ul class="messages">
+   </ul>
+   <div class="bottom_wrapper clearfix">
+      <div class="message_input_wrapper">
+         <input type="text", name = "input" , class="message_input" placeholder="Was ist die Beschwerde?..." />
+      </div>   
+      <div class="send_message" >
+         <div class="icon">
+         </div>
+         <div class="text">Send</div>
+      </div>
+   </div>
+</div>
+<div class="message_template">
+   <li class="message">
+      <div class="avatar">
+
+      </div>
+      <div class="text_wrapper">
+         <div class="text">
+            Are you alright?
+         </div>
+      </div>
+   </li>
+</div>
+<script src="/js/index.js"></script>
+</body>
 </html>
