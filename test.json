@@ -11,7 +11,7 @@
 {"intent" : "trauma", "answer" : "Wenn man ein Trauma erlitten hat, soll man unbedingt dieses sinnvoll und fruezeitig therapeutisch verarbeiten", "diagnosis" : "Trauma Potenzial"},
 {"intent" : "burn", "answer" : "Burnout und das Burnout-Syndrom ist haefig besonders bei Stressigen Arbeitsweisen und bei wenige Pausen Machen", "diagnosis" : "Burnout syndrom Potenzial"},
 {"intent" : "perfekt", "answer" : "Perfektionierung fuehrt zur endlosen Bestrebung. Die kann theoritisch gut sein, ist aber in Wirklichkeit sozusagen Overkill", "diagnosis" : "Perfektionierung"},
-{"intent" : "paranoi", "answer" : "Man muss nicht immer sich als Opfer sehen, denn das kann das Leben zur Hoelle macht", "diagnosis" : "Paranoia Potenzial"},
+{"intent" : "paranoi", "answer" : "Man muss nicht immer sich als Opfer sehen, denn das kann das Leben zur Hoelle machen", "diagnosis" : "Paranoia Potenzial"},
 {"intent" : "schuld", "answer" : "Schuld muss man nicht lang halten, sonst kann man nicht mehr sein Leben normal durchfueren", "diagnosis" : "Schuld Gefuele"},
 {"intent" : "alkohol", "answer" : "Alkohol kann viel Schaden machen, Alkoholtrinken ist immer ein unguenstige Idee", "diagnosis" : "Alkohol Sucht"},
 {"intent" : "suizid", "answer" : "Suizid Gedanken sind ein echter Gefahr, sie muessen umgehend behandelt werden", "diagnosis" : "Suizid Gedanken"},

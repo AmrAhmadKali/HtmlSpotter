@@ -196,10 +196,10 @@ body {
 
 
 .messages li {
-  border: 2px solid rgb(54, 98, 135);
+  border: 2px solid rgb(64, 218, 56);
   border-radius: 5px;
   color: white;
-  background-color: rgb(19, 77, 173);
+  background-color: rgb(111, 158, 233);
   width: 43%;
   margin-bottom: 5px;
 }
